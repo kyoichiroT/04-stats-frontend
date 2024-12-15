@@ -27,14 +27,16 @@ type winRatioData = {
 
 type CustomTooltipProps = {
   active?: boolean;
-  payload?: any;
-  label?: string;
+  payload?: {
+    payload: winRatioData;
+  }[];
+  // label?: string;
 };
 
 const CustomTooltip: React.FC<CustomTooltipProps> = ({
   active,
   payload,
-  label,
+  // label,
 }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
