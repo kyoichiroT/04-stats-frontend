@@ -1,7 +1,7 @@
 "use client";
 
 import { matchData } from "../match-data";
-import MatchDataDiagram from "../match-data-diagrams";
+import { MatchDataDataDetail } from "../match-data-details";
 
 /**
  * マッチデータを表示するコンポーネント
@@ -12,7 +12,7 @@ export default function MatchDataPageStatic() {
 
   return (
     <>
-      <MatchDataDiagram matchData={data} />
+      <MatchDataDataDetail matchData={data} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMatchData } from "@/swr/match-data";
-import MatchDataDiagram from "./match-data-diagrams";
+import { MatchDataDataDetail } from "./match-data-details";
 // import { matchData } from "./match-data";
 
 /**
@@ -23,7 +23,7 @@ export default function MatchDataPage() {
 
   return (
     <>
-      <MatchDataDiagram matchData={data} />
+      <MatchDataDataDetail matchData={data} />
     </>
   );
 }

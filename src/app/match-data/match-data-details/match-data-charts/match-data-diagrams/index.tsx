@@ -13,7 +13,7 @@ import {
   YAxis,
 } from "recharts";
 // import { dot } from "node:test/reporters";
-import { WinRatio } from "../match-data-types";
+import { WinRatio } from "../../../match-data-types";
 
 type winRatioData = {
   matchCount: number;
@@ -75,13 +75,23 @@ const COLORS = ["#8884d8", "#82ca9d", "#ffc658"];
  */
 export default function MatchDataDiagram({
   matchData,
+  displayCount,
 }: {
   matchData: WinRatio[] | undefined;
+  displayCount: number;
 }) {
   if (!matchData) {
     return <div>failed to load</div>;
   }
-  const winRatioData: winRatioData[] = matchData.map((match) => {
+
+  const filteredData = matchData.filter((_, index) => {
+    if (matchData.length === displayCount) {
+      return true;
+    }
+    return index === 0 || (index + 1) % displayCount === 0;
+  });
+
+  const winRatioData: winRatioData[] = filteredData.map((match) => {
     return {
       matchCount: match.match_count,
       firstPlayerWinCount: match.first_player_win,
@@ -107,7 +117,7 @@ export default function MatchDataDiagram({
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis tick={false} />
             <YAxis />
             <Tooltip content={<CustomTooltip />} />
             <Legend />
