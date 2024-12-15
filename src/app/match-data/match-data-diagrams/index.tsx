@@ -5,14 +5,14 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
-  Line,
-  LineChart,
+  // Line,
+  // LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import { dot } from "node:test/reporters";
+// import { dot } from "node:test/reporters";
 import { WinRatio } from "../match-data-types";
 
 type winRatioData = {

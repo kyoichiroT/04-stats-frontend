@@ -2,7 +2,7 @@
 
 import { useMatchData } from "@/swr/match-data";
 import MatchDataDiagram from "./match-data-diagrams";
-import { matchData } from "./match-data";
+// import { matchData } from "./match-data";
 
 /**
  * マッチデータを表示するコンポーネント
