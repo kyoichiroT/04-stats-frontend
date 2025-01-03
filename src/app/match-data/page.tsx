@@ -2,7 +2,7 @@
 
 import { useMatchData } from "@/swr/match-data";
 import { MatchDataDataDetail } from "./match-data-details";
-// import { matchData } from "./match-data";
+import { matchData } from "./match-data";
 
 /**
  * マッチデータを表示するコンポーネント
@@ -16,7 +16,12 @@ export default function MatchDataPage() {
   }
 
   if (error) {
-    return <div>failed to load</div>;
+    return (
+      <>
+        <div>データの取得に失敗しました。過去のデータを表示します</div>
+        <MatchDataDataDetail matchData={matchData} />
+      </>
+    );
   }
 
   // const data = matchData;
