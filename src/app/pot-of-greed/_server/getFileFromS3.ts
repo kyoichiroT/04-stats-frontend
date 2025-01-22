@@ -1,5 +1,6 @@
 "use server";
 
+import { MatchData } from "@/app/_types/match-data.types";
 import AWS from "aws-sdk";
 import csv from "csv-parser";
 import { Readable } from "stream";

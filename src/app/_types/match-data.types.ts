@@ -1,4 +1,4 @@
-type MatchData = {
+export type MatchData = {
   matchNumber: number;
   firstPlayer: string;
   firstPlayer_isMobile: string;
@@ -78,7 +78,7 @@ type MatchData = {
   secondPlayer_banish_json: string;
 };
 
-type MatchDataWithWinRate = MatchData & {
+export type MatchDataWithWinRate = MatchData & {
   match_count: number;
   first_player_win: number;
   second_player_win: number;

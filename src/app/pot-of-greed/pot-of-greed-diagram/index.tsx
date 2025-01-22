@@ -1,5 +1,6 @@
 "use client";
 
+import { MatchDataWithWinRate } from "@/app/_types/match-data.types";
 import {
   ResponsiveContainer,
   CartesianGrid,

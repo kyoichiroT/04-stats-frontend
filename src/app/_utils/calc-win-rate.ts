@@ -1,3 +1,5 @@
+import { MatchData, MatchDataWithWinRate } from "../_types/match-data.types";
+
 export function aggregateWinRatios(
   matchData: MatchData[]
 ): MatchDataWithWinRate[] {

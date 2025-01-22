@@ -4,9 +4,10 @@ import { useState } from "react";
 import { getFileFromS3 } from "./_server/getFileFromS3";
 import PotOfGreedDiagram from "./pot-of-greed-diagram";
 import { aggregateWinRatios } from "../_utils/calc-win-rate";
+import { MatchData } from "../_types/match-data.types";
 
 const Home = () => {
-  const [fileContent, setFileContent] = useState<MatchData[]>([]);
+  // const [fileContent, setFileContent] = useState<MatchData[]>([]);
 
   const [error, setError] = useState<string | null>(null);
   const [firstPlayerGreed1, setFirstPlayerGreed1] = useState<MatchData[]>([]);
@@ -40,11 +41,11 @@ const Home = () => {
     MatchData[]
   >([]);
 
-  const [test, setTest] = useState<number>(0);
-  const [test2, setTest2] = useState<MatchData | null>(null);
+  // const [test, setTest] = useState<number>(0);
+  // const [test2, setTest2] = useState<MatchData | null>(null);
 
-  let magicTest;
-  let data;
+  // let magicTest;
+  // let data;
 
   const fetchFileContent = async () => {
     try {
@@ -61,8 +62,8 @@ const Home = () => {
       );
       console.log(content.filter((data) => data.firstPlayer_PotOfGreed === 1));
 
-      setTest(Number(content[0].firstPlayer_PotOfGreed));
-      setTest2(content[0]);
+      // setTest(Number(content[0].firstPlayer_PotOfGreed));
+      // setTest2(content[0]);
 
       setFirstPlayerGreed2(
         content.filter((data) => Number(data.firstPlayer_PotOfGreed) === 2)
@@ -175,9 +176,10 @@ const Home = () => {
       //   data.secondPlayer_PotOfGreed === 5;
       // });
 
-      setFileContent(content);
-    } catch (err) {
+      // setFileContent(content);
+    } catch (e) {
       setError("Error fetching file");
+      console.error(e);
     }
   };
 
@@ -188,7 +190,6 @@ const Home = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       {/* {fileContent.map((data) => JSON.stringify(data))} */}
       {/* {fileContent && <pre>{fileContent}</pre>} */}
-      <div>greed:{test}</div>
       {/* <div>data:{JSON.stringify(test2)}</div> */}
       <div>f1</div>
       <PotOfGreedDiagram matchData={aggregateWinRatios(firstPlayerGreed1)} />
