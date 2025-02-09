@@ -72,7 +72,7 @@ export default function PotOfGreedDiagram({
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis tick={false} />
-            <YAxis />
+            <YAxis domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} />
             <Tooltip content={<CustomTooltip />} />
             <Legend />
             <Line type="monotone" dataKey="first_player_win_rate" dot={false} />
