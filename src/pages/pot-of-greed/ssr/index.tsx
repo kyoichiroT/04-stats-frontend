@@ -39,8 +39,7 @@ const Page = ({
   initialFileContent: MatchData[];
   error?: string;
 }) => {
-  const [fileContent, setFileContent] =
-    useState<MatchData[]>(initialFileContent);
+  const [fileContent] = useState<MatchData[]>(initialFileContent);
   const [advantage, setAdvantage] = useState<number>(0);
   const matchDataFilter = (ad: number) => {
     const filtered = fileContent.filter(
