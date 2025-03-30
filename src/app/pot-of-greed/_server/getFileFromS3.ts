@@ -24,6 +24,7 @@ export async function getFileFromS3() {
     // CSVをパース
     const results: MatchData[] = [];
     const stream = Readable.from(csvContent);
+    console.log("get file from s3...");
     return new Promise<MatchData[]>((resolve, reject) => {
       stream
         .pipe(csv())
