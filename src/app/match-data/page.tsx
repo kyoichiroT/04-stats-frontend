@@ -3,6 +3,10 @@
 import { useMatchData } from "@/swr/match-data";
 import { MatchDataDataDetail } from "./match-data-details";
 import { matchData } from "./match-data";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 /**
  * マッチデータを表示するコンポーネント
@@ -18,13 +22,17 @@ export default function MatchDataPage() {
   if (error) {
     return (
       <>
-        <div>データの取得に失敗しました。過去のデータを表示します</div>
+        <Alert variant="destructive" className="mb-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>エラー</AlertTitle>
+          <AlertDescription>
+            データの取得に失敗しました。過去のデータを表示します
+          </AlertDescription>
+        </Alert>
         <MatchDataDataDetail matchData={matchData} />
       </>
     );
   }
-
-  // const data = matchData;
 
   return (
     <>
@@ -35,8 +43,13 @@ export default function MatchDataPage() {
 
 function matchDataSkelton() {
   return (
-    <div>
-      <p>loading...</p>
+    <div className="space-y-4">
+      <Skeleton className="h-10 w-48" />
+      <Card>
+        <CardContent className="p-6">
+          <Skeleton className="h-full w-full" />
+        </CardContent>
+      </Card>
     </div>
   );
 }

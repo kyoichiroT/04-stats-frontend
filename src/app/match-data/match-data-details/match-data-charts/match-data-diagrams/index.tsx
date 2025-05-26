@@ -5,15 +5,13 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
-  // Line,
-  // LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-// import { dot } from "node:test/reporters";
 import { WinRatio } from "../../../match-data-types";
+import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 
 type winRatioData = {
   matchCount: number;
@@ -65,9 +63,26 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
       </div>
     );
   }
+  return null;
 };
 
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658"];
+
+// shadcn/ui chart用の設定
+const chartConfig = {
+  firstPlayerWinRate: {
+    label: "先攻勝率",
+    color: COLORS[0],
+  },
+  drawRate: {
+    label: "引き分け率",
+    color: COLORS[1],
+  },
+  secondPlayerWinRate: {
+    label: "後攻勝率",
+    color: COLORS[2],
+  },
+} satisfies ChartConfig;
 
 /**
  * マッチデータを表示するチャートコンポーネント
@@ -105,43 +120,46 @@ export default function MatchDataDiagram({
 
   return (
     <>
-      <div style={{ width: "100%", height: 800 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={winRatioData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis tick={false} />
-            <YAxis />
-            <Tooltip content={<CustomTooltip />} />
-            <Legend />
-            <Bar
-              dataKey="firstPlayerWinRate"
-              stackId="a"
-              fill={COLORS[0]}
-              isAnimationActive={false}
-            />
-            <Bar
-              dataKey="drawRate"
-              stackId="a"
-              fill={COLORS[1]}
-              isAnimationActive={false}
-            />
-            <Bar
-              dataKey="secondPlayerWinRate"
-              stackId="a"
-              fill={COLORS[2]}
-              isAnimationActive={false}
-            />
-          </BarChart>
-        </ResponsiveContainer>
-        {/* 
+      <div>
+        <ChartContainer config={chartConfig}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={winRatioData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis tick={false} />
+              <YAxis />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Bar
+                dataKey="firstPlayerWinRate"
+                stackId="a"
+                fill={COLORS[0]}
+                isAnimationActive={false}
+              />
+              <Bar
+                dataKey="drawRate"
+                stackId="a"
+                fill={COLORS[1]}
+                isAnimationActive={false}
+              />
+              <Bar
+                dataKey="secondPlayerWinRate"
+                stackId="a"
+                fill={COLORS[2]}
+                isAnimationActive={false}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartContainer>
+      </div>
+      {/* 
         <LineChart
           width={1900}
           height={800}
@@ -177,7 +195,6 @@ export default function MatchDataDiagram({
             dot={false}
           />
         </LineChart> */}
-      </div>
     </>
   );
 }
