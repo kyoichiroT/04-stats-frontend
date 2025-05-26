@@ -30,6 +30,7 @@ export const useMatchData = () => {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
       shouldRetryOnError: false,
+      loadingTimeout: 5000,
     }
   );
 };
